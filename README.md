@@ -26,16 +26,16 @@ This is the default behavior:
 
 1\. Search for the latest binary release in https://golang.org/doc/devel/release.html.
 
-2\. The script uses local system OS and ARCH to download the correct binary release. It is not harmful to run the script multiple times. Downloaded releases are kept as cache under '/usr/local'. You can erase them manually.
+2\. The script uses local system OS and ARCH to download the correct binary release. It is not harmful to run the script multiple times. Downloaded releases are kept as cache under '/usr/lib'. You can erase them manually.
 
 By default, the script only detects actual releases (not beta releases, not release candidates). However one can force any specific non-final release:
 
     $ # force specific release candidate
     $ sudo RELEASE=1.11rc1 ./update-golang.sh
 
-3\. The release is installed at '/usr/local/go'.
+3\. The release is installed at '/usr/lib/go'.
 
-4\. The path '/usr/local/go/bin' is added to PATH using '/etc/profile.d/golang_path.sh'.
+4\. The path '/usr/lib/go/bin' is added to PATH using '/etc/profile.d/golang_path.sh'.
 
 5\. Only if needed, GOROOT is properly setup, also using '/etc/profile.d/golang_path.sh'.
 
@@ -99,30 +99,30 @@ Sample session:
     update-golang.sh: user: uid=0(root) gid=0(root) groups=0(root)
     update-golang.sh: RELEASE_LIST=https://golang.org/doc/devel/release.html
     update-golang.sh: SOURCE=https://storage.googleapis.com/golang
-    update-golang.sh: DESTINATION=/usr/local
+    update-golang.sh: DESTINATION=/usr/lib
     update-golang.sh: RELEASE=1.10.2
     update-golang.sh: OS=linux
     update-golang.sh: ARCH_PROBE=uname -m
     update-golang.sh: ARCH=amd64
     update-golang.sh: PROFILED=/etc/profile.d/golang_path.sh
-    update-golang.sh: CACHE=/usr/local
+    update-golang.sh: CACHE=/usr/lib
     update-golang.sh: GOPATH=
     update-golang.sh: DEBUG=
-    update-golang.sh: will install golang go1.10.2.linux-amd64 as: /usr/local/go
+    update-golang.sh: will install golang go1.10.2.linux-amd64 as: /usr/lib/go
     update-golang.sh: https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz is remote
-    update-golang.sh: no need to download - file cached: /usr/local/go1.10.2.linux-amd64.tar.gz
+    update-golang.sh: no need to download - file cached: /usr/lib/go1.10.2.linux-amd64.tar.gz
     update-golang.sh: remove_old_link: not found symlink for old install
-    update-golang.sh: untar: tar -x -f /usr/local/go1.10.2.linux-amd64.tar.gz
+    update-golang.sh: untar: tar -x -f /usr/lib/go1.10.2.linux-amd64.tar.gz
     update-golang.sh: path: removing old settings from: /etc/profile.d/golang_path.sh
-    update-golang.sh: path: issuing new /usr/local/go/bin to /etc/profile.d/golang_path.sh
+    update-golang.sh: path: issuing new /usr/lib/go/bin to /etc/profile.d/golang_path.sh
     update-golang.sh: path: issuing /home/lab/go/bin to /etc/profile.d/golang_path.sh
-    update-golang.sh: golang go1.10.2.linux-amd64 installed at: /usr/local/go
-    update-golang.sh: testing: /usr/local/go/bin/go version
+    update-golang.sh: golang go1.10.2.linux-amd64 installed at: /usr/lib/go
+    update-golang.sh: testing: /usr/lib/go/bin/go version
     update-golang.sh: go version go1.10.2 linux/amd64
-    update-golang.sh: /usr/local/go/bin/go version: SUCCESS
-    update-golang.sh: testing: /usr/local/go/bin/go run /tmp/hello-tmpv1bX1rQN.go
+    update-golang.sh: /usr/lib/go/bin/go version: SUCCESS
+    update-golang.sh: testing: /usr/lib/go/bin/go run /tmp/hello-tmpv1bX1rQN.go
     update-golang.sh: hello, world
-    update-golang.sh: /usr/local/go/bin/go run /tmp/hello-tmpv1bX1rQN.go: SUCCESS
+    update-golang.sh: /usr/lib/go/bin/go run /tmp/hello-tmpv1bX1rQN.go: SUCCESS
     update-golang.sh: cleanup: /tmp/tmp.tcNY25eXNl
     lab@ubu1:~/update-golang$
 
@@ -133,13 +133,13 @@ These environment variables are available for customization:
 
     RELEASE_LIST=https://golang.org/doc/devel/release.html ;# search for new releases from this url
     SOURCE=https://storage.googleapis.com/golang           ;# download source location
-    DESTINATION=/usr/local                                 ;# install destination
+    DESTINATION=/usr/lib                                   ;# install destination
     RELEASE=1.8.3                                          ;# force golang release
     OS=linux                                               ;# force os
     ARCH_PROBE='uname -m'                                  ;# force arch detection command
     ARCH=amd64                                             ;# force arch
     PROFILED=/etc/profile.d/golang_path.sh                 ;# update PATH, optionally set GOROOT
-    CACHE=/usr/local                                       ;# cache downloads in this dir
+    CACHE=/usr/lib                                         ;# cache downloads in this dir
     GOPATH=                                                ;# use this GOPATH
     DEBUG=                                                 ;# set to enable debug
 
